@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head>
+
+<body>
+
+	<!-- Start of first page: #one -->
+<div data-role="page" id="one">
+
+	<div data-role="header">
+		<h1>Login/Register</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+
+    	<h2>Better You</h2>
+
+         Username: <input type="text" id="username" name="username"></input>
+         Password: <input type="password" id="password" name="password"></input>
+         <button id="register" class="ui-btn">Register</button>
+         <button id="login" class="ui-btn">Login</button>
+
+	</div><!-- /content -->
+
+	<div data-role="footer" data-theme="a">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page one -->
+		
+		<script>
+		    $("#register").click(function(e) {
+        		console.log("Register clicked");
+        		//get a new username and password
+        		var un = $("#username").val();
+        		var pw = $("#password").val();
+
+        		//redirecting to customer page
+                //window.location="/#customer";
+
+        		//AJAX POST to the login page
+        		$.post( "/register", { username: un, password: pw })
+        		.done(function( data ) {
+        		alert( "Data Loaded: " + data );
+        		});
+        	});
+
+        	$("#login").click(function(e) {
+        		console.log("Login clicked");
+
+        		// get the username and the password
+        		var un = $("#username").val();
+        		var pw = $("#password").val();
+
+        		// AJAX POST to the /login page
+        		$.post( "/login", { username: un, password:pw })
+        		.done(function( data ) {
+        			alert( "Data Loaded: " + data );
+
+                    //if(data.includes('customer')){
+                    //    window.location="/#customer";
+                   // }
+                    //else if(data.includes('cook')){
+                    //    window.location="/#cook";
+                   // }
+        			//else if(data.includes('manager')){
+        			//	window.location="/#manager";
+                   // }
+                  });
+             });
+		</script>
+		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+  </body>
+</html>
