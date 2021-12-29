@@ -31,7 +31,7 @@ app.use('/users', usersRouter);
 app.post('/login',function(req,res){
 
     // catching the data from the POST
-    var user=req.body.username;
+    var user =req.body.username;
     var pass = req.body.password;
 
 
