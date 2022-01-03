@@ -30,76 +30,6 @@
 		<h4>Better You</h4>
 	</div><!-- /footer -->
 </div><!-- /page one -->
-
-	<div data-role="page" id="register">
-
-		<div data-role="header">
-			<h1>Register Page</h1>
-		</div><!-- /header -->
-
-		<div role="main" class="ui-content">
-
-			<h2>Better You</h2>
-
-			Username: <input type="text" id="username" name="username"></input>
-			Password: <input type="password" id="password" name="password"></input>
-			<button id="register" class="ui-btn">Register</button>
-
-		</div><!-- /content -->
-
-		<div data-role="footer" data-theme="a">
-			<h4>Better You</h4>
-		</div><!-- /footer -->
-	</div><!-- /page one -->
-
-	<div data-role="page" id="admin" data-theme="a">
-
-		<div data-role="header">
-			<h1>Admin page</h1>
-		</div><!-- /header -->
-
-		<div role="main" class="ui-content">
-			<h2>Admin Page</h2>
-
-		</div><!-- /content -->
-
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div><!-- /footer -->
-	</div><!-- /page admin -->
-
-	<div data-role="page" id="customer" data-theme="a">
-
-		<div data-role="header">
-			<h1>Customer page</h1>
-		</div><!-- /header -->
-
-		<div role="main" class="ui-content">
-			<h2>Customer Page</h2>
-
-		</div><!-- /content -->
-
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div><!-- /footer -->
-	</div><!-- /page customer -->
-
-	<div data-role="page" id="supervisor" data-theme="a">
-
-		<div data-role="header">
-			<h1>Supervisor page</h1>
-		</div><!-- /header -->
-
-		<div role="main" class="ui-content">
-			<h2>Supervisor Page</h2>
-
-		</div><!-- /content -->
-
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div><!-- /footer -->
-	</div><!-- /page supervisor -->
-
 		<script>
 		    $("#register").click(function(e) {
         		console.log("Register clicked");
@@ -108,7 +38,7 @@
         		var pw = $("#password").val();
 
         		//redirecting to customer page
-                window.location="/#customer";
+                window.location="/customer";
 
         		//AJAX POST to the login page
         		$.post( "/register", { username: un, password: pw })
@@ -130,13 +60,13 @@
         			alert( "Data Loaded: " + data );
 
                     if(data.includes('customer')){
-                        window.location="/#customer";
+                        window.location="/customer";
                     }
                     else if(data.includes('admin')){
-                        window.location="/#admin";
+                        window.location="/admin";
                     }
         			else if(data.includes('supervisor')){
-        				window.location="/#supervisor";
+        				window.location="/supervisor";
                     }
                   });
              });
