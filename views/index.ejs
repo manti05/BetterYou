@@ -16,20 +16,60 @@
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
+		<h2>Better You</h2>
 
-    	<h2>Better You</h2>
-
-         Username: <input type="text" id="username" name="username"></input>
-         Password: <input type="password" id="password" name="password"></input>
-         <button id="login" class="ui-btn">Login</button>
-		 <button id="register" class="ui-btn">Register</button>
-
+		<form>
+			Username: <input type="text" id="username" name="username"></input>
+			Password: <input type="password" id="password" name="password"></input>
+			<button id="login" class="ui-btn">Login</button>
+			<button id="register" class="ui-btn">Register</button>
+		</form>
 	</div><!-- /content -->
 
 	<div data-role="footer" data-theme="a">
 		<h4>Better You</h4>
 	</div><!-- /footer -->
 </div><!-- /page one -->
+
+	<!-- Start of newCustomer page: # -->
+	<div data-role="page" id="newCustomer">
+
+		<div data-role="header">
+			<h1>First Time User Questionnaire</h1>
+		</div><!-- /header -->
+
+		<div role="main" class="ui-content">
+			<h2>Better You</h2>
+		<form>
+			<label for="select-choice-1" class="select">Question 1</label>
+			<select name="select-choice-1" id="select-choice-1">
+				<option value="optionA">Option A</option>
+				<option value="optionB">Option B</option>
+				<option value="optionC">Option C</option>
+			</select>
+
+			<label for="select-choice-2" class="select">Question 2</label>
+			<select name="select-choice-2" id="select-choice-2">
+				<option value="optionA">Option A</option>
+				<option value="optionB">Option B</option>
+				<option value="optionC">Option C</option>
+			</select>
+
+			<label for="select-choice-3" class="select">Question 3</label>
+			<select name="select-choice-3" id="select-choice-3">
+				<option value="optionA">Option A</option>
+				<option value="optionB">Option B</option>
+				<option value="optionC">Option C</option>
+			</select>
+		</form>
+				<button id="submit" class="ui-btn">Submit</button>
+		</div><!-- /content -->
+
+		<div data-role="footer" data-theme="a">
+			<h4>Better You</h4>
+		</div><!-- /footer -->
+	</div><!-- /page newCustomer -->
+
 		<script>
 		    $("#register").click(function(e) {
         		console.log("Register clicked");
@@ -38,7 +78,7 @@
         		var pw = $("#password").val();
 
         		//redirecting to customer page
-                window.location="/customer";
+                window.location="/#newCustomer";
 
         		//AJAX POST to the login page
         		$.post( "/register", { username: un, password: pw })
