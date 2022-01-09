@@ -9,6 +9,10 @@ var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var supervisorRouter = require('./routes/supervisor');
 var customerRouter = require('./routes/customer');
+var booksRouter = require('./routes/books');
+var fitnessRouter = require('./routes/fitness');
+var healthRouter = require('./routes/health');
+var recipesRouter = require('./routes/recipes');
 
 var session = require('express-session')
 var mysql = require('mysql')
@@ -33,6 +37,10 @@ app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/supervisor', supervisorRouter);
 app.use('/customer', customerRouter);
+app.use('/books', booksRouter);
+app.use('/fitness', fitnessRouter);
+app.use('/health', healthRouter);
+app.use('/recipes', recipesRouter);
 
 app.post('/login',function(req,res){
 
