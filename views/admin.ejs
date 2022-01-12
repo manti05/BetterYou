@@ -1,34 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-  </head>
+<head>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
 <body>
+    <script>
+        $(document).ready(function(){
+            $.get("/getUsers", function(data){
+                var userData = data.users;
+                if (userData != "") {
+                    for(let i = 0; i < userData.length; i++) {
+                        $("#userTable").append(`<tr><td>`+userData[i].username +`</td><td>`+userData[i].acctype+`</td><td><button onclick="UserEdit('`+ userData[i].username+`');">Edit</button></td><td><button onclick="Delete('`+userData[i].username+`');">Delete</button></td></tr>`);
+                    }
+                }
+            })
+        })
+    </script>
+<!-- Start of first page: #one -->
+<div data-role="page" id="adminUsers">
 
-	<!-- Start of first page: #one -->
-<div data-role="page" id="admin">
+    <div data-role="header">
+        <h1>Admin Page</h1>
+    </div><!-- /header -->
+    <div data-role="navbar" data-grid="d">
+        <ul>
+            <li><a href="#"  onclick='TypeHome()' class="ui-btn-active">Home</a></li>
+            <li><a href="/fitness">Fitness</a></li>
+            <li><a href="/health">Health</a></li>
+            <li><a href="/recipes">Recipes</a></li>
+            <li><a href="/books">Books</a></li>
+            <li><a href="#">Meditation</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+    </div><!-- /navbar -->
+    <div class="table">
+        <table id="userTable">
+            <tr>
+                <th>Username</th>
+                <th>User Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
+    <button id="closeUsers">Close Table</button>
+</div><!-- /content -->
 
-	<div data-role="header">
-		<h1>Admin Page HELLO HELLO</h1>
-	</div><!-- /header -->
-	<div data-role="navbar" data-grid="d">
-		<ul>
-			<li><a href="#" class="ui-btn-active">Home</a></li>
-			<li><a href="/fitness">Fitness</a></li>
-			<li><a href="/health">Health</a></li>
-			<li><a href="/recipes">Recipes</a></li>
-			<li><a href="/books">Books</a></li>
-			<li><a href="#">Meditation</a></li>
-			<li><a href="#">About Us</a></li>
-		</ul>
-	</div><!-- /navbar -->
-
-	<div data-role="footer" data-theme="a">
-		<h4>Page Footer</h4>
-	</div><!-- /footer -->
+<div data-role="footer" data-theme="a">
+    <h4>Page Footer</h4>
+</div><!-- /footer -->
 </div><!-- /page one -->
 
-  </body>
+    <script>
+
+        function TypeHome(){
+            if (sessionStorage.getItem("acctype") == "admin"){
+                window.location = "/admin";
+            }
+            else if(sessionStorage.getItem("acctype") == "supervisor"){
+                window.location ="/supervisor";
+            }
+            else if (sessionStorage.getItem("acctype") == "customer"){
+                window.location ="/customer";
+            }
+        }
+
+        function Delete(user){
+            $.post("/adminDeleteUser", {user: user})
+                .done(function(data){
+                    alert(data);
+                    window.location='/admin';
+                });
+        }
+        <!--
+        function UserEdit(user){
+            sessionStorage.setItem("username",user);
+            window.location='/#adminUsers';
+        }
+        -->
+    </script>
+</body>
 </html>

@@ -99,12 +99,49 @@ app.post('/register',function(req,res){
   var sql = "INSERT INTO users (username, password, acctype) VALUES ('"+NewUser+"' , '"+NewPass+"', '"+NewAccT+"')";
   console.log(sql);
   connection.query(sql);
-
-
-
 }); //end of register
 
+app.get("/getUsers", function(req,res,next)
+{
+    var sql = "SELECT username,acctype FROM users;";
+    var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : '',
+        port : 3306,
+        database : 'betteryou'
+    });
+    connection.connect(function(err){
+        connection.query(sql,function (err, rows, fields){
+            if (err) throw err;
+            res.send({users: rows});
+        }); // end query
+    }); // end connection
+});
 
+app.post('/adminDeleteUser',function(req,res){
+    var user = req.body.user;
+    var sql = "DELETE FROM users WHERE username = '" + user + "';";
+
+    var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : '',
+        port : 3306,
+        database : 'betteryou'
+
+    });
+    connection.connect(function(err){
+        try{
+            connection.query(sql);
+            res.status(200);
+            res.send("User successfully deleted!");
+        }
+        catch (err){
+            res.send("Unexpected error " + err.message + " occured!");
+        }
+    });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
