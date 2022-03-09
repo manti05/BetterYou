@@ -22,6 +22,7 @@
 			<li><a href="/books" class="ui-btn-active">Books</a></li>
 			<li><a href="#">Meditation</a></li>
 			<li><a href="#">About Us</a></li>
+			<li><a href="#" onclick="LogOut()">Log Out</a></li>
 		</ul>
 	</div><!-- /navbar -->
 
@@ -89,6 +90,7 @@
 				<li><a href="/books" class="ui-btn-active">Books</a></li>
 				<li><a href="#">Meditation</a></li>
 				<li><a href="#">About Us</a></li>
+				<li><a href="#" onclick="LogOut()">Log Out</a></li>
 			</ul>
 		</div><!-- /navbar -->
 
@@ -158,5 +160,11 @@
 		</div><!-- /footer -->
 	</div><!-- /page one -->
 
+	<script>
+		function LogOut(){
+			sessionStorage.clear();
+			window.location='/';
+		}
+	</script>
   </body>
 </html>

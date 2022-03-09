@@ -67,7 +67,7 @@ app.post('/login',function(req,res){
     connection.query('SELECT * from users WHERE username = "'+user+'" AND password = "'+pass+'"', function (err, rows, fields) {
       if (err) throw err
       for(var i=0; i< rows.length; i++){
-           console.log('Acc type: ', rows[i].acctype)
+           console.log('Acc type: ', rows[i].acctype);
            res.send(rows[i].acctype); // send the account type back to jQuery mobile.
       }
     })
@@ -141,6 +141,35 @@ app.post('/adminDeleteUser',function(req,res){
             res.send("Unexpected error " + err.message + " occured!");
         }
     });
+});
+
+app.post("/EditUser", function(req,res)
+{
+    var user = req.body.user;
+    var accType = req.body.user;
+    var sql = "UPDATE users SET username = '" + user + "',acctype = '" + accType + "' WHERE username = '" + user + "';";
+
+    var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : '',
+        port : 3306,
+        database : 'betteryou'
+    });
+
+    connection.connect(function(err)
+    {
+        try
+        {
+            connection.query(sql);
+            res.status(200);
+            res.send("User edited successfully!");
+        }
+        catch (err)
+        {
+            res.send("Unexpected error " + err.message + " occured!");
+        }
+    }); // end connection
 });
 
 // catch 404 and forward to error handler

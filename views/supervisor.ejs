@@ -23,6 +23,7 @@
 			<li><a href="/books">Books</a></li>
 			<li><a href="#">Meditation</a></li>
 			<li><a href="#">About Us</a></li>
+			<li><a href="#" onclick="LogOut()">Log Out</a></li>
 		</ul>
 	</div><!-- /navbar -->
 
@@ -44,6 +45,11 @@
 		<h4>Page Footer</h4>
 	</div><!-- /footer -->
 </div><!-- /page one -->
-
+	<script>
+		function LogOut(){
+			sessionStorage.clear();
+			window.location='/';
+		}
+	</script>
   </body>
 </html>

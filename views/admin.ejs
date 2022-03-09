@@ -26,17 +26,19 @@
     </div><!-- /header -->
     <div data-role="navbar" data-grid="d">
         <ul>
-            <li><a href="#"  onclick='TypeHome()' class="ui-btn-active">Home</a></li>
+            <li><a href="#" onclick="TypeHome()" class="ui-btn-active">Home</a></li>
             <li><a href="/fitness">Fitness</a></li>
             <li><a href="/health">Health</a></li>
             <li><a href="/recipes">Recipes</a></li>
             <li><a href="/books">Books</a></li>
             <li><a href="#">Meditation</a></li>
             <li><a href="#">About Us</a></li>
+            <li><a href="#" onclick="LogOut()">Log Out</a></li>
         </ul>
 
         <div>
             <h2>Welcome!</h2>
+            <button onclick="TypeHome()">Click me</button>
             <p>
                 You have arrived at the Admin page.
             </p>
@@ -60,7 +62,7 @@
             </tr>
         </table>
     </div>
-    <button id="closeUsers">Close Table</button>
+    <button id="closeUsers" class="button expanded">Close Table</button>
 </div><!-- /content -->
 
 <div data-role="footer" data-theme="a">
@@ -70,15 +72,26 @@
 
     <script>
 
+        function buttonClick(){
+            alert("button was clicked");
+        }
+        function LogOut(){
+            sessionStorage.clear();
+            window.location='/';
+        }
         function TypeHome(){
-            if (sessionStorage.getItem("acctype") == "admin"){
-                window.location = "/admin";
+            if(sessionStorage.getItem('acctype') === 'admin'){
+                alert("button was clicked");
+                window.location = '/customer';
             }
-            else if(sessionStorage.getItem("acctype") == "supervisor"){
-                window.location ="/supervisor";
+            else if(sessionStorage.getItem("acctype") === "supervisor"){
+                window.location ='/supervisor';
             }
-            else if (sessionStorage.getItem("acctype") == "customer"){
-                window.location ="/customer";
+            else if(sessionStorage.getItem('acctype') == 'customer'){
+                window.location ='/customer';
+            }
+            else{
+                alert("button was clicked and nothing happened");
             }
         }
 
@@ -89,12 +102,11 @@
                     window.location='/admin';
                 });
         }
-        <!--
+
         function UserEdit(user){
             sessionStorage.setItem("username",user);
             window.location='/#adminUsers';
         }
-        -->
     </script>
 </body>
 </html>
